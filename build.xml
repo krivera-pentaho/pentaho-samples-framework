@@ -1,0 +1,33 @@
+<!--===========================================================================
+  This is the build file for the Pentaho Common UI Project
+
+  This build file will use the subfloor.xml file as the default build
+  process and should only override the tasks that need to differ from
+  the common build file.
+
+  See subfloor.xml for more details
+============================================================================-->
+<project name="Pentaho Samples Framework" basedir="." default="dist">
+
+  <description>
+    This build file is used to create the Pentaho Samples Framework project
+    and works with the subfloor.xml file.
+  </description>
+
+  <import file="build-res/subfloor-js.xml"/>
+
+  <target name="dist" description="Creates a distribution">
+    <delete dir="${stage.dir}" />
+
+    <mkdir dir="${stage.dir}/samples-framework"/>
+
+    <copy todir="${stage.dir}/samples-framework">
+      <fileset dir="${basedir}/package-res/" />
+    </copy>
+
+    <zip destfile="dist/pentaho-samples-framework-plugin-${project.revision}.zip">
+      <zipfileset dir="${stage.dir}"/>
+    </zip>
+  </target>
+
+</project>

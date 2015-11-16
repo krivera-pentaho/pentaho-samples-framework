@@ -1,0 +1,22 @@
+#documentation h2 span {
+  line-height: 25pt;
+}
+
+#documentation .example-content {
+ border: 1px solid #c1d7e1; 
+ overflow-x: auto;
+ background-color: #f7f7f9;
+}
+
+#documentation .example-content tr td:first-child {
+  border-right: 1px solid #c1d7e1;
+}
+
+#documentation code {
+  background-color: inherit;
+  border: 0px;
+}
+
+#documentation .example-content pre {
+  margin-bottom: 0px;
+}

@@ -1,0 +1,113 @@
+.api-calls input[type=checkbox], main .api-calls input[type=radio] {
+  margin-top: 0px;
+  vertical-align: middle;
+}
+
+.api-calls span {
+  vertical-align: middle;
+}
+
+.modes h5 {
+  margin-bottom: 0px;
+}
+
+.modes span {
+  margin-right: 10px;
+}
+
+.modes {
+  margin-top: 10px;
+}
+
+#apply-api-button {
+  margin-top: 10px;
+}
+
+#api-call {
+  margin-bottom: 0px;
+  width: 100%;
+}
+
+#api-call-container {
+  margin-bottom: 10px;
+}
+
+#api-call-parameters .api-call-param-container select {
+  width: 70%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 0px;
+}
+
+#api-call-parameters { 
+  display: none;
+  margin-bottom: 20px;
+}
+
+#api-call-parameters h5 {
+  margin-bottom: 0px;
+}
+
+#api-call-parameters .api-call-param-container span {
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#api-namespace {
+  width: 100%;
+}
+
+#api-namespace-container h5, #api-calls-container h5 {
+  margin-bottom: 0px;
+}
+
+#api-calls-container select {
+  margin-top: 0px;
+}
+
+#additional-content {
+  padding: 10px;
+}
+
+#additional-content hr {
+  border-top: 1px solid #c1d7e1;
+}
+
+.draggable-container {
+  margin-bottom: 20px;
+}
+
+.draggable-attribute {
+  position: relative;
+  cursor: pointer;
+  padding: 5px;
+  text-align: center;
+  border: solid 1px #808080;
+}
+
+.draggable-attribute.level {
+  background-color: #FCE52D;
+}
+
+.draggable-attribute.measure {
+  background-color: #BCE9F9;
+}
+
+.selectable {
+  -webkit-touch-callout: text;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

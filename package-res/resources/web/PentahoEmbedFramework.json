@@ -1,0 +1,6 @@
+{
+  "plugins" : {
+    "Analyzer API" : "/pentaho/content/samples-framework/resources/web/plugins/analyzer",
+    "Common-UI Prompting" : "/pentaho/content/samples-framework/resources/web/plugins/prompting"
+  }
+}
