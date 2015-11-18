@@ -16,16 +16,54 @@
 
   <import file="build-res/subfloor-js.xml"/>
 
+  <property name="resolve.analyzer.doc.dir" value="${basedir}/doc-lib/analyzer/"/>
+  <property name="stage.analyzer.doc.dir" value="${stage.dir}/samples-framework/resources/web/plugins/analyzer/content/"/>
+
+  <target name="clean" depends="subfloor.clean, clean-js">
+    <delete dir="${resolve.analyzer.doc.dir}" />
+    <delete dir="${basedir}/doc-js" />
+    <delete dir="${basedir}/doc-jsdoc" />
+    <delete dir="${basedir}/doc-lib" />
+    <delete dir="${basedir}/build-res/pentaho-js-build/" />
+    <delete file="${basedir}/build-res/pentaho-js-build.zip" />
+  </target>
+
+  <target name="resolve" depends="subfloor.resolve, resolve-js, npm-install">
+    <mkdir dir="${resolve.analyzer.doc.dir}" />
+
+    <!-- Get Analyzer Documentation from Mindtouch -->
+    <get src="https://help.pentaho.com/Documentation/${doc.analyzer.revision}/0R0/070/030/Event_APIs"
+         dest="${resolve.analyzer.doc.dir}/Event APIs.html"/>
+    <get src="https://help.pentaho.com/Documentation/${doc.analyzer.revision}/0R0/070/030/Report_APIs"
+         dest="${resolve.analyzer.doc.dir}/Report APIs.html"/>
+    <get src="https://help.pentaho.com/Documentation/${doc.analyzer.revision}/0R0/070/030/Utility_APIs"
+         dest="${resolve.analyzer.doc.dir}/Utility APIs.html"/>
+    <get src="https://help.pentaho.com/Documentation/${doc.analyzer.revision}/0R0/070/030/User_Interface_APIs"
+         dest="${resolve.analyzer.doc.dir}/User Interface APIs.html"/>
+    <get src="https://help.pentaho.com/Documentation/${doc.analyzer.revision}/0R0/070/030/Operation_APIs"
+         dest="${resolve.analyzer.doc.dir}/Operation APIs.html"/>
+  </target>
+
   <target name="dist" description="Creates a distribution">
-    <delete dir="${stage.dir}" />
-
-    <mkdir dir="${stage.dir}/samples-framework"/>
-
+    <!-- Stage Source files -->
+    <unzip src="js-lib/common-ui-6.1-SNAPSHOT.zip" dest="${stage.dir}" />
     <copy todir="${stage.dir}/samples-framework">
-      <fileset dir="${basedir}/package-res/" />
+      <fileset dir="${basedir}/package-res/"/>
     </copy>
 
-    <zip destfile="dist/pentaho-samples-framework-plugin-${project.revision}.zip">
+    <!-- Execute Doc Creation -->
+    <antcall target="doc-js" />
+
+    <!-- Copy Doc -->
+    <copy todir="${stage.analyzer.doc.dir}">
+      <fileset dir="${resolve.analyzer.doc.dir}"/>
+    </copy>
+    <copy todir="${stage.analyzer.doc.dir}/samples-framework/resources/web/plugins/prompting/resources" overwrite="true">
+      <fileset file="${basedir}/doc-js/prompting/*API.html"/>
+    </copy>
+
+    <!-- Zip Final Dist -->
+    <zip destfile="${dist.dir}/pentaho-samples-framework-plugin-${project.revision}.zip">
       <zipfileset dir="${stage.dir}"/>
     </zip>
   </target>

@@ -2,3 +2,9 @@
 *.iml
 dist/
 bin/
+doc-lib/
+js-lib/
+node_modules/
+build-res/**/
+build-res/pentaho-js-build.zip
+doc-js/
