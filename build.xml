@@ -19,7 +19,7 @@
   <property name="resolve.analyzer.doc.dir" value="${basedir}/doc-lib/analyzer/"/>
   <property name="stage.analyzer.doc.dir" value="${stage.dir}/samples-framework/resources/web/plugins/analyzer/content/"/>
 
-  <target name="clean" depends="subfloor.clean, clean-js">
+  <target name="clean" depends="subfloor.clean">
     <delete dir="${resolve.analyzer.doc.dir}" />
     <delete dir="${basedir}/doc-js" />
     <delete dir="${basedir}/doc-jsdoc" />
@@ -46,7 +46,7 @@
 
   <target name="dist" description="Creates a distribution">
     <!-- Stage Source files -->
-    <unzip src="js-lib/common-ui-6.1-SNAPSHOT.zip" dest="${stage.dir}" />
+    <unzip src="js-lib/common-ui-6.1-SNAPSHOT.zip" dest="${bin.dir}/extract" />
     <copy todir="${stage.dir}/samples-framework">
       <fileset dir="${basedir}/package-res/"/>
     </copy>
@@ -58,7 +58,7 @@
     <copy todir="${stage.analyzer.doc.dir}">
       <fileset dir="${resolve.analyzer.doc.dir}"/>
     </copy>
-    <copy todir="${stage.analyzer.doc.dir}/samples-framework/resources/web/plugins/prompting/resources" overwrite="true">
+    <copy todir="${stage.dir}/samples-framework/resources/web/plugins/prompting/resources" overwrite="true">
       <fileset file="${basedir}/doc-js/prompting/*API.html"/>
     </copy>
 

@@ -1,40 +1,10 @@
-define(["common-ui/jquery", "common-ui/prompting/api/PromptingAPI", "./doc-panel.js"], function($, PromptingAPI, DocPanel) {
+define(["common-ui/jquery", "common-ui/prompting/api/PromptingAPI", "./doc-panel.js", "./api-actions.js"], function($, PromptingAPI, DocPanel, ApiActions) {
 
   var PropertiesPanel = function(framework) {
-    this.api = new PromptingAPI();
+
     this.docPanel = new DocPanel(framework);
+    this.apiActions = new ApiActions(framework);
     this.framework = framework;
-
-    this._getParameterXML = function(callback) {
-      var fullURL = this.framework._createFullURL("resources/params.xml");
-
-      $.ajax({
-        url: fullURL,
-        type: "GET",
-        success: function(data, status) {
-          if (status == "success") {
-            callback(data);
-          } else {
-            alert("Error loading " + fullURL);
-          }
-        },
-        error: function(msg) { alert(JSON.stringify(msg, null, 2)); },
-        dataType: "text"
-      });
-    }
-
-    this._createPromptPanel = function() {
-      this.framework.console.addLine("api.operation.render('prompt-panel-render-area', getParameterXMLCallback);", "'prompt-panel-render-area' is the id of the HTML container.");
-      this._getParameterXML(function(xml) {
-        this.api.operation.render("prompt-panel-render-area", function() {
-          return xml;
-        });
-
-        $("#prompt-panel-render-area").show();
-        this.framework.console.addLine("api.operation.init();", "The 'render' call above does not actually create the prompt. 'init' needs to be called after.");
-        this.api.operation.init();
-      }.bind(this));
-    };
 
     this._populateMethods = function(clazz) {
       this.docPanel.getMethods(clazz, function(methods) {
@@ -44,13 +14,17 @@ define(["common-ui/jquery", "common-ui/prompting/api/PromptingAPI", "./doc-panel
           var method = methods[i];
           var option = $("<option></option>").val(method).text(method);
           methodsEle.append(option);
-        }          
+        }
       });
     };
 
+    this._executeApiAction = function(namespace, method) {
+
+    }
+
     this.init = function() {
       $("#create-prompt-btn").on("click", function() {
-        this._createPromptPanel();
+        this.apiActions.createPromptPanel();
       }.bind(this));
 
       var classesEle = $("#classes").on("change", function(e) {

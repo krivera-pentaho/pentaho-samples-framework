@@ -3,7 +3,7 @@
     "allowUnknownTags": true
   },
   "source": {
-    "include": ["bin/stage/common-ui/resources/web/prompting"],
+    "include": ["bin/extract/common-ui/resources/web/prompting"],
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"
   },

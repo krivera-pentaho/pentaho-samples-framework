@@ -11,6 +11,7 @@ define([], function() {
     },
     unload : function(framework) {
       plugin.unload(framework);
-    }
+    },
+    serverPluginId : "analyzer"
   }
 });

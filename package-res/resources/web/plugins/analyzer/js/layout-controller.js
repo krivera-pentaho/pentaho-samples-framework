@@ -237,27 +237,27 @@ define(["common-ui/jquery"], function($) {
 
       docURLs = {
         report : {
-          url: baseURL + "content/AnalyzerAPITools/Report APIs - Pentaho Corporation.html",
+          url: baseURL + "content/Report APIs.html",
           text: "Report",
           namespace: "api.report.*"
         },
         operation : {
-          url: baseURL + "content/AnalyzerAPITools/Operation APIs - Pentaho Corporation.html",
+          url: baseURL + "content/Operation APIs.html",
           text: "Operation",
           namespace: "api.operation.*"
         },
         util : {
-          url: baseURL + "content/AnalyzerAPITools/Utility APIs - Pentaho Corporation.html",
+          url: baseURL + "content/Utility APIs.html",
           text: "Utility",
           namespace: "api.util.*"
         },
         ui : {
-          url: baseURL + "content/AnalyzerAPITools/User Interface APIs - Pentaho Corporation.html",
+          url: baseURL + "content/User Interface APIs.html",
           text: "User Interface",
           namespace: "api.ui.*"
         },
         event : {
-          url: baseURL + "content/AnalyzerAPITools/Event APIs - Pentaho Corporation.html",
+          url: baseURL + "content/Event APIs.html",
           text: "Event",
           namespace: "api.event.*"
         }
