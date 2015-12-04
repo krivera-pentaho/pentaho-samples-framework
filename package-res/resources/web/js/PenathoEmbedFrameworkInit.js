@@ -80,16 +80,20 @@ require(["common-ui/jquery-clean", "js/PentahoEmbedFramework"], function($, Pent
       for (var i in paths) {
         var path = paths[i];
         var file = path + (path.charAt(path.length-1) == "/" ? "" : "/") + "index.js";
-        loadPlugin(file, path, registeredPlugins);
+
+        var button = $("<button class='btn btn-large btn-block plugin-btn'></button>").hide();
+        $("#plugin-button-container").append(button);
+
+        loadPlugin(file, path, registeredPlugins, button);
       }
     });
   }
 
-  var loadPlugin = function(file, basePath, registeredPlugins) {
+  var loadPlugin = function(file, basePath, registeredPlugins, button) {
     require([file], function(plugin) {
       // Plugin needs to exist, have a name, and have a registered server plugin
       if (plugin && plugin.name && plugin.serverPluginId && registeredPlugins.indexOf(plugin.serverPluginId) > -1) {
-        var button = $("<button class='btn btn-large btn-block plugin-btn'></button>")
+        button
           .text(plugin.name)
           .on("click", function() {
             currentPlugin = this;
@@ -100,12 +104,13 @@ require(["common-ui/jquery-clean", "js/PentahoEmbedFramework"], function($, Pent
 
             PentahoEmbedFramework._setBaseURL(basePath);
             currentPlugin.init(PentahoEmbedFramework); // Calls the plugin's init method
-          }.bind(plugin));
+          }.bind(plugin))
+          .show();
 
-        $("#plugin-button-container").append(button);
+
       }
     }, function(err) {
-      // DO NOTHING
+      button.remove(); // Removes button from HTML
     });
   }
 
