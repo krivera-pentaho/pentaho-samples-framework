@@ -1,4 +1,4 @@
-define(["common-ui/jquery"], function($) {
+define(["common-ui/jquery-clean"], function($) {
   var Console = function() {
     this.console = $("#console");
     this.editConsoleTitle = $("#edit-console-title");

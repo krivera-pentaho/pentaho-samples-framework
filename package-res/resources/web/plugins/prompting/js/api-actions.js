@@ -1,4 +1,4 @@
-define(["common-ui/jquery", "common-ui/prompting/api/PromptingAPI"], function($, PromptingAPI) {
+define(["common-ui/jquery-clean", "common-ui/prompting/api/PromptingAPI"], function($, PromptingAPI) {
   var ApiActions = function(framework) {
     this.api = new PromptingAPI();
     this.framework = framework;

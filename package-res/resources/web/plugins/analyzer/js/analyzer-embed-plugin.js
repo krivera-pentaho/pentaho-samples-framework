@@ -1,4 +1,4 @@
-define(["common-ui/jquery", "./layout-controller.js", "./execution-controller.js"], function($, layout, execution) {
+define(["common-ui/jquery-clean", "./layout-controller.js", "./execution-controller.js"], function($, layout, execution) {
   var framework;
   var queuedAction = null;
 

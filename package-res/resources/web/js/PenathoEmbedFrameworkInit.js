@@ -1,4 +1,4 @@
-require(["common-ui/jquery", "js/PentahoEmbedFramework"], function($, PentahoEmbedFramework) {
+require(["common-ui/jquery-clean", "js/PentahoEmbedFramework"], function($, PentahoEmbedFramework) {
   var currentPlugin;
 
   // Get plugins

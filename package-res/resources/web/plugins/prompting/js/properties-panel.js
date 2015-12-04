@@ -1,4 +1,4 @@
-define(["common-ui/jquery", "common-ui/prompting/api/PromptingAPI", "./doc-panel.js", "./api-actions.js"], function($, PromptingAPI, DocPanel, ApiActions) {
+define(["common-ui/jquery-clean", "common-ui/prompting/api/PromptingAPI", "./doc-panel.js", "./api-actions.js"], function($, PromptingAPI, DocPanel, ApiActions) {
 
   var PropertiesPanel = function(framework) {
 

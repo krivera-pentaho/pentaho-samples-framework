@@ -1,4 +1,4 @@
-define(["common-ui/jquery", "./api-actions.js"], function($, apiActions) {
+define(["common-ui/jquery-clean", "./api-actions.js"], function($, apiActions) {
   var api, layout, framework;
 
   var addConsoleLines = function(calls, clickable) {

@@ -1,4 +1,4 @@
-define(["common-ui/jquery"], function($) {
+define(["common-ui/jquery-clean"], function($) {
   var DocPanel = function(framework) {
     this.framework = framework;
 

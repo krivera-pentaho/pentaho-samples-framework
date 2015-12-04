@@ -1,4 +1,4 @@
-define(["common-ui/jquery", "./console.js"], function($, Console) {
+define(["common-ui/jquery-clean", "./console.js"], function($, Console) {
   this._baseURL = "";
   this._css=[];
   this._setBaseURL = function(baseURL) {

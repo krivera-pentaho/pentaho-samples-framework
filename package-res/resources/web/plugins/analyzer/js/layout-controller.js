@@ -1,4 +1,4 @@
-define(["common-ui/jquery"], function($) {
+define(["common-ui/jquery-clean"], function($) {
   var framework, api, listenerToRemove, onResetRenderArea, docURLs;
   var isDebug = location.search.search("debug=true") > -1;
   var viewModeURL = "/pentaho/api/repos/xanalyzer/viewer?catalog=SteelWheels&cube=SteelWheelsSales&autoRefresh=true" + (isDebug ? "&debug=true" : "");
