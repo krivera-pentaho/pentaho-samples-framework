@@ -29,7 +29,7 @@ define(["common-ui/jquery-clean"], function($) {
         error: function(msg) { alert(JSON.stringify(msg, null, 2)); },
         dataType: "html"
       });
-    }
+    };
 
     this.getMethods = function(clazz, callback) {
       var url = this.framework._createFullURL("resources/" + this._map[clazz].name);
@@ -61,7 +61,7 @@ define(["common-ui/jquery-clean"], function($) {
       var docContainer = $("#doc-container").empty();
 
       if (method) {
-        var html = this._map[clazz].html;
+        var html = this._map[clazz].html.clone(true, true);
         var methodHtml = html.find("#" + method);
         var descriptors = methodHtml.nextUntil("h4.name");
 

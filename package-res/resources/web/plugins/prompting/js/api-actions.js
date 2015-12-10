@@ -21,16 +21,25 @@ define(["common-ui/jquery-clean", "common-ui/prompting/api/PromptingAPI"], funct
       });
     };
 
-    this.createPromptPanel = function() {
+    this.createPromptPanel = function(postInit) {
       this.framework.console.clear();
-      this.framework.console.addLine("api.operation.render('prompt-panel-render-area', getParameterXMLCallback);", "'prompt-panel-render-area' is the id of the HTML container.");
+
+      if (!postInit) {
+        this.framework.console.addLine("api.operation.render('prompt-panel-render-area', getParameterXml);", "'prompt-panel-render-area' is the id of the HTML container.");
+      }
+
       this.api.operation.render("prompt-panel-render-area", function(api, callback) {
         this._getParameterXML(function(xml) {
           callback(xml); // Finish Render
-
           $("#prompt-panel-render-area").show();
-          this.framework.console.addLine("api.operation.init();", "The 'render' call above does not actually create the prompt. 'init' needs to be called after.");
+
+          if (!postInit) {
+            this.framework.console.addLine("api.operation.init();", "The 'render' call above does not actually create the prompt. 'init' needs to be called after.");
+          }
+
           this.api.operation.init();
+
+          postInit.call(this);
         }.bind(this));
       }.bind(this));
     };
@@ -42,6 +51,9 @@ define(["common-ui/jquery-clean", "common-ui/prompting/api/PromptingAPI"], funct
 
         },
         beforeRender: function() {
+
+        },
+        afterUpdate: function() {
 
         },
         beforeUpdate: function() {
@@ -57,24 +69,41 @@ define(["common-ui/jquery-clean", "common-ui/prompting/api/PromptingAPI"], funct
 
       operation: {
         getParameterValues: function() {
+          this.createPromptPanel(function() {
+            var paramValues = this.api.operation.getParameterValues();
+            var paramValuesStr = JSON.stringify(paramValues, null, 2);
 
+            this.framework.console.addLine("api.operation.getParameterValues()");
+            this.framework.console.addLine("Return Value:\n" + paramValuesStr);
+          });
         },
         init: function() {
-
+          this.createPromptPanel();
         },
         render: function() {
+          this.framework.console.addLine("api.operation.render('prompt-panel-render-area', getParameterXml);", "'prompt-panel-render-area' is the id of the HTML container.");
+          this.api.operation.render("prompt-panel-render-area", function(api, callback) {
+            this._getParameterXML(function(xml) {
+              callback(xml); // Finish Render
 
+              this.framework.console.addLine("Nothing is shown, but the prompt panel render area is ready to be initialized");
+            }.bind(this));
+          }.bind(this));
         }
       }
     };
 
     this.execute = function(namespace, method) {
-      namespace = namespace.replace("*", "").replace("api.", "");
+      if (!method) {
+        return;
+      }
 
-      var apiFunc = this.methods[namespace + method];
+      var apiFunc = this.methods[namespace][method];
 
       if (!apiFunc) {
         alert("API definition not found for " + namespace+method);
+      } else {
+        apiFunc.bind(this).call();
       }
     };
   };

@@ -18,15 +18,13 @@ define(["common-ui/jquery-clean", "common-ui/prompting/api/PromptingAPI", "./doc
       });
     };
 
-    this._executeApiAction = function(namespace, method) {
-
-    }
+    this._executeApiAction = function() {
+      var namespace = $("#classes").val();
+      var method = $("#methods").val();
+      this.apiActions.execute(namespace, method);
+    };
 
     this.init = function() {
-      $("#create-prompt-btn").on("click", function() {
-        this.apiActions.createPromptPanel();
-      }.bind(this));
-
       var classesEle = $("#classes").on("change", function(e) {
         this._populateMethods($(e.currentTarget).val());
       }.bind(this));
@@ -44,13 +42,16 @@ define(["common-ui/jquery-clean", "common-ui/prompting/api/PromptingAPI", "./doc
       var methodsEle = $("#methods").on("change", function(e) {
         var ele = $(e.currentTarget);
         this.docPanel.populateDoc(classesEle.val(), ele.val());
+
+        this.framework.console.clear();
+        $("#prompt-panel-render-area").hide().empty();
       }.bind(this));
 
       $("#apply-btn").on("click", function() {
-        alert("test");
-      });
+        this._executeApiAction();
+      }.bind(this));
     }
-  }
+  };
 
   return PropertiesPanel;
 });
